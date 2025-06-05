@@ -1,4 +1,4 @@
-package com.kz.member.aspect;
+package com.kz.common.aspect;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.support.spring.PropertyPreFilters;
@@ -25,7 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Slf4j
 public class LogAspect {
     public LogAspect() {
-       log.info("Common LogAspect");
+       log.info("公共模块: Common LogAspect");
     }
 
     private final static Logger LOG = LoggerFactory.getLogger(LogAspect.class);
