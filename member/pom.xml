@@ -32,6 +32,11 @@
             <optional>true</optional>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -41,7 +46,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
-                    <mainClass>com.member.MemberApplication</mainClass>
+                    <mainClass>com.kz.member.MemberApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>
