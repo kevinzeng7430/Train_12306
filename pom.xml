@@ -25,6 +25,7 @@
         <fastjson.version>1.2.70</fastjson.version>
         <hutool.version>5.6.3</hutool.version>
         <lombok.version>1.18.38</lombok.version>
+        <devtools.version>3.0.0</devtools.version>
         <common.version>0.0.1-SNAPSHOT</common.version>
     </properties>
     <dependencyManagement>
@@ -41,6 +42,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-devtools</artifactId>
                 <scope>runtime</scope>
+                <version>${devtools.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
