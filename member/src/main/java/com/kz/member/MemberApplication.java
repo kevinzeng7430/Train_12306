@@ -1,4 +1,4 @@
-package com.member;
+package com.kz.member;
 
 
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +11,7 @@ import org.springframework.core.env.Environment;
 
 @SpringBootApplication
 @Slf4j
+
 public class MemberApplication {
 
     public static void main(String[] args) {
