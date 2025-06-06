@@ -3,6 +3,7 @@ package com.kz.member.controller;
 import com.kz.member.service.MemberService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,5 +17,15 @@ public class MemberController {
         // 这里可以调用MemberService来获取会员数量
         // return memberService.count();
         return memberService.count(); // 仅为示例，实际应返回真实数据
+    }
+
+    /**
+     * 注册会员
+     * @param mobile
+     * @return
+     */
+    @PostMapping("/member/register")
+    public Long register(String mobile) {
+        return memberService.register(mobile);
     }
 }
