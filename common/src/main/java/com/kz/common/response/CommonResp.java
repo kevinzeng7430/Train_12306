@@ -1,0 +1,60 @@
+package com.kz.common.response;
+
+/**
+ * 通用响应类
+ * 用于统一API响应格式
+ */
+
+public class CommonResp<T> {
+    /**
+     * 是否成功
+     */
+    private boolean success = true;
+    /**
+     * 响应码
+     */
+    private String message;
+    /**
+     * 响应内容
+     */
+    private T content;
+
+    public  CommonResp() {}
+
+    public CommonResp(T content) {
+        this.content = content;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public T getContent() {
+        return content;
+    }
+
+    public void setContent(T content) {
+        this.content = content;
+    }
+
+    @Override
+    public String toString() {
+        return "CommonResp{" +
+                "success=" + success +
+                ", message='" + message + '\'' +
+                ", content=" + content +
+                '}';
+    }
+}
