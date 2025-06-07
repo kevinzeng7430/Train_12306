@@ -3,6 +3,7 @@ package com.kz.member.service.serviceImp;
 import cn.hutool.core.collection.CollUtil;
 import com.kz.common.Exception.BusinessException;
 import com.kz.common.Exception.Enum.BusinessExceptionEnum;
+import com.kz.common.util.SnowUtil;
 import com.kz.member.domain.Member;
 import com.kz.member.domain.MemberExample;
 import com.kz.member.mapper.MemberMapper;
@@ -41,7 +42,8 @@ public class MemberServiceImp implements MemberService {
         }
 
         Member member = new Member();
-        member.setId(System.currentTimeMillis());
+//        member.setId(System.currentTimeMillis());
+        member.setId(SnowUtil.getSnowflakeNextId());
         member.setMobile(mobile);
         memberMapper.insert(member);
         return member.getId();
