@@ -36,7 +36,7 @@ public class ControllerExceptionHandler {
      * 业务异常
      * @param e 异常对象
      * @return 返回通用响应对象
-     *
+     *jiancha
      */
     @ExceptionHandler(BusinessException.class)
     @ResponseBody
