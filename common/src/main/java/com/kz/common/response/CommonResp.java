@@ -1,10 +1,15 @@
 package com.kz.common.response;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * 通用响应类
  * 用于统一API响应格式
  */
 
+@Setter
+@Getter
 public class CommonResp<T> {
     /**
      * 是否成功
@@ -22,30 +27,6 @@ public class CommonResp<T> {
     public  CommonResp() {}
 
     public CommonResp(T content) {
-        this.content = content;
-    }
-
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public T getContent() {
-        return content;
-    }
-
-    public void setContent(T content) {
         this.content = content;
     }
 
