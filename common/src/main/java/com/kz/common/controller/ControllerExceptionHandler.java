@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * 同一拦截异常处理、数据预处理
- *
+ * 统一拦截异常处理、数据预处理
  * @ ControllerAdvice：全局异常处理注解，作用于所有 @Controller，可统一处理异常、数据绑定等。
  * @ ExceptionHandler(Exception.class)：指定处理哪类异常，这里表示捕获所有 Exception 异常。
  * @ ResponseBody：返回值会自动序列化为 JSON 或 XML，直接写入 HTTP 响应体。
