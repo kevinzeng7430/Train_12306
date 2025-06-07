@@ -1,5 +1,8 @@
 package com.kz.member.req;
 
+/*
+参数会自动映射到对应的属性，所以属性名和参数名需要一致
+ */
 public class MemberRegisterReq {
     String mobile;
 
