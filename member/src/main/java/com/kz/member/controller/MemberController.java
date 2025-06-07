@@ -4,6 +4,7 @@ import com.kz.common.response.CommonResp;
 import com.kz.member.req.MemberRegisterReq;
 import com.kz.member.service.MemberService;
 import jakarta.annotation.Resource;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,7 +32,7 @@ public class MemberController {
      * @return
      */
     @PostMapping("/member/register")
-    public CommonResp<Long> register(MemberRegisterReq req) {
+    public CommonResp<Long> register(@Validated MemberRegisterReq req) {
         long count = memberService.register(req);
 //        CommonResp<Long> resp = new CommonResp<>();
 //        resp.setMessage("会员注册成功");
