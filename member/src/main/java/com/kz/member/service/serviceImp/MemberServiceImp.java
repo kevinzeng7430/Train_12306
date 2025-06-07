@@ -1,6 +1,8 @@
 package com.kz.member.service.serviceImp;
 
 import cn.hutool.core.collection.CollUtil;
+import com.kz.common.Exception.BusinessException;
+import com.kz.common.Exception.Enum.BusinessExceptionEnum;
 import com.kz.member.domain.Member;
 import com.kz.member.domain.MemberExample;
 import com.kz.member.mapper.MemberMapper;
@@ -35,7 +37,7 @@ public class MemberServiceImp implements MemberService {
         if(CollUtil.isNotEmpty(members)){
             // 如果手机号已存在，返回-1
             //return members.get(0).getId();
-            throw new RuntimeException("手机号已存在");
+            throw new BusinessException(BusinessExceptionEnum.MEMBER_MOBILE_EXIST);
         }
 
         Member member = new Member();
