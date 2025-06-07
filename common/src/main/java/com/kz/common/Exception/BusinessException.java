@@ -14,4 +14,11 @@ public class BusinessException extends RuntimeException{
         this.e = e;
     }
 
+    /**
+     * 业务异常,不写入堆栈信息
+     */
+    @Override
+    public synchronized Throwable fillInStackTrace() {
+        return this;
+    }
 }
