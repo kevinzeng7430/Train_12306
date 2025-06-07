@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollUtil;
 import com.kz.member.domain.Member;
 import com.kz.member.domain.MemberExample;
 import com.kz.member.mapper.MemberMapper;
+import com.kz.member.req.MemberRegisterReq;
 import com.kz.member.service.MemberService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -21,12 +22,13 @@ public class MemberServiceImp implements MemberService {
 
     /**
      * 注册会员
-     * @param mobile
+     * @param req
      * @return
      */
     @Override
-    public long register(String mobile) {
+    public long register(MemberRegisterReq req) {
         // 检查手机号是否已存在
+        String mobile = req.getMobile();
         MemberExample memberExample = new MemberExample();
         memberExample.createCriteria().andMobileEqualTo(mobile);
         List<Member> members = memberMapper.selectByExample(memberExample);

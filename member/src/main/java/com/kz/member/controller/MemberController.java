@@ -1,5 +1,7 @@
 package com.kz.member.controller;
 
+import com.kz.common.response.CommonResp;
+import com.kz.member.req.MemberRegisterReq;
 import com.kz.member.service.MemberService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,19 +15,28 @@ public class MemberController {
     private MemberService memberService;
 
     @GetMapping("/member/count")
-    public int count() {
+    public CommonResp<Integer> count() {
         // 这里可以调用MemberService来获取会员数量
         // return memberService.count();
-        return memberService.count(); // 仅为示例，实际应返回真实数据
+        int count = memberService.count();
+        CommonResp<Integer> resp = new CommonResp<>();
+        resp.setMessage("会员数量查询成功");
+        resp.setContent(count);
+        return resp; // 仅为示例，实际应返回真实数据
     }
 
     /**
      * 注册会员
-     * @param mobile
+     * @param req
      * @return
      */
     @PostMapping("/member/register")
-    public Long register(String mobile) {
-        return memberService.register(mobile);
+    public CommonResp<Long> register(MemberRegisterReq req) {
+        long count = memberService.register(req);
+//        CommonResp<Long> resp = new CommonResp<>();
+//        resp.setMessage("会员注册成功");
+//        resp.setContent(count);
+//        return resp;
+        return  new CommonResp<>(count);
     }
 }
