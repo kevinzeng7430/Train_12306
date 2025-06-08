@@ -1,22 +1,26 @@
 package com.kz.member.controller;
 
 import com.kz.common.response.CommonResp;
+import com.kz.member.req.MemberLoginReq;
 import com.kz.member.req.MemberRegisterReq;
 import com.kz.member.req.MemberSendCodeReq;
+import com.kz.member.response.MemberLoginResp;
 import com.kz.member.service.MemberService;
 import jakarta.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/member")
 public class MemberController {
 
     @Resource
     private MemberService memberService;
 
-    @GetMapping("/member/count")
+    @GetMapping("/count")
     public CommonResp<Integer> count() {
         // 这里可以调用MemberService来获取会员数量
         // return memberService.count();
@@ -32,7 +36,7 @@ public class MemberController {
      * @param req
      * @return
      */
-    @PostMapping("/member/register")
+    @PostMapping("/register")
     public CommonResp<Long> register(@Validated MemberRegisterReq req) {
         long count = memberService.register(req);
 //        CommonResp<Long> resp = new CommonResp<>();
@@ -42,10 +46,14 @@ public class MemberController {
         return  new CommonResp<>(count);
     }
 
-    @PostMapping("/member/send-code")
+    @PostMapping("/send-code")
     public CommonResp<Long> sendCode(@Validated MemberSendCodeReq req) {
         memberService.sendCode(req);
         return new CommonResp<>();
     }
 
+    @PostMapping("/login")
+    public CommonResp<MemberLoginResp> login(@Validated MemberLoginReq req) {
+        return  new CommonResp<>(memberService.login(req));
+    }
 }
