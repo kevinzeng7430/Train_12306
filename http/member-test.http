@@ -17,3 +17,17 @@ Content-Type: application/x-www-form-urlencoded
 mobile= 122334
 
 ###
+
+###
+POST http://localhost:8000/member/member/send-code
+Content-Type: application/x-www-form-urlencoded
+
+mobile= 13399292922
+
+###
+
+###
+POST http://localhost:8000/member/member/login
+Content-Type: application/x-www-form-urlencoded
+
+mobile= 13399292922&code= 8888

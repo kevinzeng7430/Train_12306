@@ -24,7 +24,7 @@
         <java.version>17</java.version>
         <spring-cloud.version>2022.0.0</spring-cloud.version>
         <fastjson.version>1.2.70</fastjson.version>
-        <hutool.version>5.6.3</hutool.version>
+        <hutool.version>5.8.10</hutool.version>
         <lombok.version>1.18.38</lombok.version>
         <devtools.version>3.0.0</devtools.version>
         <mybatis.version>3.0.0</mybatis.version>
