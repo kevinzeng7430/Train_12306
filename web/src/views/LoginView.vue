@@ -80,7 +80,7 @@ export default defineComponent({
         if (data.success) {
           notification.success({description: "登录成功"});
           // 登录成功跳转控制台
-          router.push("/welcome");
+          router.push("/main");
           store.commit("setMember", data.content);
         } else {
           notification.error({description: data.message});
