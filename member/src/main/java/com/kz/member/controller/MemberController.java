@@ -2,6 +2,7 @@ package com.kz.member.controller;
 
 import com.kz.common.response.CommonResp;
 import com.kz.member.req.MemberRegisterReq;
+import com.kz.member.req.MemberSendCodeReq;
 import com.kz.member.service.MemberService;
 import jakarta.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
@@ -40,4 +41,11 @@ public class MemberController {
 //        return resp;
         return  new CommonResp<>(count);
     }
+
+    @PostMapping("/member/send-code")
+    public CommonResp<Long> sendCode(@Validated MemberSendCodeReq req) {
+        memberService.sendCode(req);
+        return new CommonResp<>();
+    }
+
 }
