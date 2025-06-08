@@ -20,14 +20,19 @@ mobile= 122334
 
 ###
 POST http://localhost:8000/member/member/send-code
-Content-Type: application/x-www-form-urlencoded
+Content-Type: application/json
 
-mobile= 13399292922
+{
+  "mobile": "13399292922"
+}
 
 ###
 
 ###
 POST http://localhost:8000/member/member/login
-Content-Type: application/x-www-form-urlencoded
+Content-Type: application/json
 
-mobile= 13399292922&code= 8888
+{
+  "mobile": "13399292922",
+  "code": "8888"
+}

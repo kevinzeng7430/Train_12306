@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-
+import LoginView from "@/views/LoginView.vue";
 const routes = [
     /*
     两种路由方式：
@@ -8,26 +7,20 @@ const routes = [
     2. 动态路由：懒加载，需要用的时候再加载，打包的项目会比较小
      */
   {
-    // 方法1：
     path: '/',
-    name: 'home',
-    component: HomeView
-
-  },
-  {
-    // 方法2：懒加载
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    redirect: '/login' // 重定向到登录页面
   },
   {
     path: '/login',
     name: 'login',
-    component: () => import('../views/LoginView.vue')
+    component: LoginView
+  },
+  {
+    path: '/main',
+    name: 'main',
+    component: () => import('../views/MainView.vue'),
   }
+
 ]
 
 const router = createRouter({
@@ -36,3 +29,20 @@ const router = createRouter({
 })
 
 export default router
+
+// {
+//   // 方法1：
+//   path: '/',
+//       name: 'home',
+//     component: HomeView
+//
+// },
+// {
+//   // 方法2：懒加载
+//   path: '/about',
+//       name: 'about',
+//     // route level code-splitting
+//     // this generates a separate chunk (about.[hash].js) for this route
+//     // which is lazy-loaded when the route is visited.
+//     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+// },
