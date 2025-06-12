@@ -3,6 +3,7 @@ package com.kz.member.service.serviceImp;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.jwt.JWTUtil;
 import com.kz.common.Exception.BusinessException;
 import com.kz.common.Exception.Enum.BusinessExceptionEnum;
 import com.kz.common.util.SnowUtil;
@@ -19,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -110,7 +112,12 @@ public class MemberServiceImp implements MemberService {
             log.info("登录失败，手机号：{}", mobile);
             throw new BusinessException(BusinessExceptionEnum.MEMBER_MOBILE_CODE_ERROR);
         }
-        return BeanUtil.copyProperties(member, MemberLoginResp.class);
+        MemberLoginResp memberLoginResp = BeanUtil.copyProperties(member, MemberLoginResp.class);
+        Map<String, Object> map = BeanUtil.beanToMap(member);
+        String key = "kzeng12306";
+        String token = JWTUtil.createToken(map, key.getBytes());
+        memberLoginResp.setToken(token);
+        return memberLoginResp;
     }
 
     private Member selectByMobile(String mobile) {
