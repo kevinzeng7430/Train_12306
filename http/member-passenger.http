@@ -1,5 +1,22 @@
-POST http://localhost:8081/member/passenger/save
+
+POST http://localhost:8000/member/member/login
 Content-Type: application/json
+
+{
+  "mobile": "13399292922",
+  "code": "8888"
+}
+
+> {%
+    client.log(JSON.stringify(response.body));
+    client.log(JSON.stringify(response.body.content.token));
+    client.global.set("token", response.body.content.token);
+%}
+
+###
+POST http://localhost:8000/member/passenger/save
+Content-Type: application/json
+token: {{token}}
 
 {
   "memberId": 0,
