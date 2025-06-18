@@ -3,7 +3,7 @@ import App from './App.vue'
 
 import router from './router'
 import store from './store'
-import Antd from 'ant-design-vue';
+import Antd, {notification} from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 import * as Icons from '@ant-design/icons-vue';
 import axios from "axios";
@@ -41,15 +41,21 @@ axios.interceptors.response.use(function (response) {
     store.commit("setMember",{}); // 清除登录状态
     console.log('触发 notification');
     router.push('/'); // 跳转到登录页面
-    // 返回一个带有标准结构的响应对象
-    return Promise.resolve({
-      data: {
-        success: false,
-        //这个message会传递给loginView
-        message: '未登录或登录过期，请重新登录123',
-        content: null
-      }
+    notification.error({
+      message: '未登录或登录过期',
+      description: '请重新登录',
     });
+    // 返回一个带有标准结构的响应对象
+    // return Promise.resolve({
+    //   data: {
+    //     success: false,
+    //     //这个message会传递给loginView
+    //     message: '未登录或登录过期，请重新登录123',
+    //     content: null
+    //   }
+    // });
+    //使用空 Promise 阻止消息传递：
+    return new Promise(()=>{});
   }
   // 其他错误继续抛出
   return Promise.reject(error);
