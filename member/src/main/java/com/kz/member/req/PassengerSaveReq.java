@@ -1,4 +1,4 @@
-package com.kz.member.domain;
+package com.kz.member.req;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Setter
 @Getter
-public class Passenger {
+public class PassengerSaveReq {
     private Long id;
 
     private Long memberId;
