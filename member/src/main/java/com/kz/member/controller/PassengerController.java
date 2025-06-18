@@ -20,6 +20,11 @@ public class PassengerController {
         passengerService.save(req);
         return new CommonResp<>();
 
+
+    }
+}
+
+
 //        @Validated
 //        用于开启参数校验功能
 //        会验证请求参数对象中的字段是否符合在 PassengerSaveReq 类中定义的校验规则
@@ -29,5 +34,3 @@ public class PassengerController {
 //                表示方法参数应该从请求体(request body)中获取
 //        自动将 JSON 格式的请求数据转换为 Java 对象
 //        通常用于处理 POST/PUT 请求中的 JSON 数据
-    }
-}
