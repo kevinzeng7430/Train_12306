@@ -1,4 +1,4 @@
-package com.kz.member.response;
+package com.kz.common.response;
 
 import lombok.Data;
 

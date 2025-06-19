@@ -5,6 +5,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.kz.common.Exception.BusinessException;
 import com.kz.common.Exception.Enum.BusinessExceptionEnum;
+import com.kz.common.util.JwtUtil;
 import com.kz.common.util.SnowUtil;
 import com.kz.member.domain.Member;
 import com.kz.member.domain.MemberExample;
@@ -19,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -110,7 +112,12 @@ public class MemberServiceImp implements MemberService {
             log.info("登录失败，手机号：{}", mobile);
             throw new BusinessException(BusinessExceptionEnum.MEMBER_MOBILE_CODE_ERROR);
         }
-        return BeanUtil.copyProperties(member, MemberLoginResp.class);
+        MemberLoginResp memberLoginResp = BeanUtil.copyProperties(member, MemberLoginResp.class);
+        Map<String, Object> map = BeanUtil.beanToMap(member);;
+        String token = JwtUtil.createToken(memberLoginResp.getId(), memberLoginResp.getMobile());
+        log.info("登录成功，手机号：{}，生成的token：{}", mobile, token);
+        memberLoginResp.setToken(token);
+        return memberLoginResp;
     }
 
     private Member selectByMobile(String mobile) {

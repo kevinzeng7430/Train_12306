@@ -51,7 +51,6 @@ public class ControllerExceptionHandler {
 
     /**
      * 校验异常
-     *
      * @param e 异常对象
      * @return 返回通用响应对象
      */
@@ -59,7 +58,7 @@ public class ControllerExceptionHandler {
     @ResponseBody
     public CommonResp<Object> exceptionHandler(BindException e) {
         CommonResp<Object> commonResp = new CommonResp<>();
-        log.error("业务异常:{}", e.getBindingResult().getAllErrors().get(0).getDefaultMessage(), e);
+        log.error("Bind异常:{}", e.getBindingResult().getAllErrors().get(0).getDefaultMessage(), e);
         commonResp.setSuccess(false);
         commonResp.setMessage(e.getBindingResult().getAllErrors().get(0).getDefaultMessage());
         return commonResp;

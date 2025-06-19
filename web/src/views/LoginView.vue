@@ -56,7 +56,7 @@ export default defineComponent({
   setup() {
     const router = useRouter();
     const loginForm = reactive({
-      mobile: '12306',
+      mobile: '13399292922',
       code: '',
     });
     const sendCode = () => {
