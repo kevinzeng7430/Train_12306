@@ -20,7 +20,23 @@ const routes = [
     component: () => import('../views/MainView.vue'),
     meta:{
         requiresAuth: true // 标记需要登录才能访问
-    }
+    },
+    children: [
+      {
+        path: 'welcome',
+        name: 'welcome',
+        component:() => import('../views/main/WelcomeView.vue'),
+      },
+      {
+        path: 'passenger',
+        name: 'passenger',
+        component: () => import('../views/main/PassengerView.vue'),
+      }
+    ]
+  },
+  {
+    path:'',
+    redirect: '/welcome' // 默认重定向到登录页面
   }
 
 ]

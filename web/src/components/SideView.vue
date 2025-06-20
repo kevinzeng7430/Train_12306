@@ -1,66 +1,55 @@
 <template>
   <a-layout-sider width="200" style="background: #fff">
     <a-menu
-        v-model:selectedKeys="selectedKeys2"
-        v-model:openKeys="openKeys"
+        v-model:selectedKeys = "selectedKeys"
         mode="inline"
         :style="{ height: '100%', borderRight: 0 }"
     >
-      <a-sub-menu key="sub1">
-        <template #title>
-              <span>
-                <user-outlined />
-                subnav 1
-              </span>
-        </template>
-        <a-menu-item key="1">option1111</a-menu-item>
-        <a-menu-item key="2">option2</a-menu-item>
-        <a-menu-item key="3">option3</a-menu-item>
-        <a-menu-item key="4">option4</a-menu-item>
-      </a-sub-menu>
-      <a-sub-menu key="sub2">
-        <template #title>
-              <span>
-                <laptop-outlined />
-                subnav 2
-              </span>
-        </template>
-        <a-menu-item key="5">option5</a-menu-item>
-        <a-menu-item key="6">option6</a-menu-item>
-        <a-menu-item key="7">option7</a-menu-item>
-        <a-menu-item key="8">option8</a-menu-item>
-      </a-sub-menu>
-      <a-sub-menu key="sub3">
-        <template #title>
-              <span>
-                <notification-outlined />
-                subnav 3
-              </span>
-        </template>
-        <a-menu-item key="9">option9</a-menu-item>
-        <a-menu-item key="10">option10</a-menu-item>
-        <a-menu-item key="11">option11</a-menu-item>
-        <a-menu-item key="12">option12</a-menu-item>
-      </a-sub-menu>
+      <a-menu-item key="/welcome">
+        <router-link to="/welcome">
+          <span>
+            <user-outlined/>
+            欢迎页
+          </span>
+        </router-link>
+      </a-menu-item>
+      <a-menu-item key="/passenger">
+      <router-link to="/passenger">
+          <span>
+            <laptop-outlined/>
+            乘车人管理
+          </span>
+        </router-link>
+      </a-menu-item>
     </a-menu>
   </a-layout-sider>
 
 </template>
 
 <script>
-import {defineComponent, ref,} from 'vue';
-
+import {defineComponent, ref, watch,} from 'vue';
+import router from "@/router";
 
 
 export default defineComponent({
   name: "side-view",
 
   setup() {
+    // ref是Vue 3中用于创建响应式数据的函数，用来定义响应式变量的
+    //reactive 是Vue 3中用于创建响应式对象的函数，用来定义响应式对象的
+    const selectedKeys = ref([]);
+    watch( () => router.currentRoute.value.path, (newValue) => {
+      console.log('watch newValue', newValue);
+      selectedKeys.value = [];
+      selectedKeys.value.push(newValue);
+    }),{ immediate: true, deep: true };
 
+    // 这是 watch 侦听器的配置选项：
+    // immediate: true 表示在侦听器初始化时立即执行一次回调函数。
+    // deep: true 表示深度侦听，被侦听的数据如果是对象或数组，内部属性变化也会触发回调
 
     return {
-      selectedKeys2: ref(['1']),
-      openKeys: ref(['sub1']),
+      selectedKeys,
     };
   },
 });
