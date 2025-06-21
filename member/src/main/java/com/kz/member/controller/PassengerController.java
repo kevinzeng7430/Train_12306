@@ -1,13 +1,20 @@
 package com.kz.member.controller;
 
 
+import com.kz.common.context.LoginMemberContext;
 import com.kz.common.response.CommonResp;
+import com.kz.member.req.PassengerQueryReq;
 import com.kz.member.req.PassengerSaveReq;
+import com.kz.member.response.PassengerQueryResp;
 import com.kz.member.service.PassengerService;
 import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+@Slf4j
 @RestController
 @RequestMapping("/passenger")
 public class PassengerController {
@@ -15,12 +22,20 @@ public class PassengerController {
     @Resource
     private PassengerService passengerService;
 
+    /*
+        * 保存乘客信息
+     */
     @PostMapping("/save")
     public CommonResp<Object> save(@Validated @RequestBody PassengerSaveReq req) {
         passengerService.save(req);
         return new CommonResp<>();
+    }
 
-
+    @GetMapping("/queryList")
+    public CommonResp<List<PassengerQueryResp>> queryList(@Validated PassengerQueryReq req) {
+        req.setMemberId(LoginMemberContext.getId());
+        List<PassengerQueryResp> passengerList = passengerService.queryList(req);
+        return new CommonResp<>(passengerList);
     }
 }
 
