@@ -1,7 +1,7 @@
 package com.kz.member.service;
 
-import com.kz.member.req.PassengerQueryReq;
-import com.kz.member.req.PassengerSaveReq;
+import com.kz.member.request.PassengerQueryReq;
+import com.kz.member.request.PassengerSaveReq;
 import com.kz.member.response.PassengerQueryResp;
 
 import java.util.List;

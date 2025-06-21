@@ -1,4 +1,4 @@
-package com.kz.member.req;
+package com.kz.member.request;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;

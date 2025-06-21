@@ -1,13 +1,15 @@
-package com.kz.member.req;
+package com.kz.member.request;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
+/*
+前端界面请求数据的封装
+参数会自动映射到对应的属性，所以属性名和参数名需要一致
+ */
 @Data
-public class MemberSendCodeReq {
+public class MemberRegisterReq {
     @NotBlank(message = "手机号不能为空")
-    @Pattern(regexp = "^1[3-9]\\d{9}$", message = "手机号格式不正确") //以1开头，第二位是3-9，后面9位数字的11位手机号。
     String mobile;
 
     @Override

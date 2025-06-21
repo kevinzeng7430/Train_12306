@@ -3,8 +3,8 @@ package com.kz.member.controller;
 
 import com.kz.common.context.LoginMemberContext;
 import com.kz.common.response.CommonResp;
-import com.kz.member.req.PassengerQueryReq;
-import com.kz.member.req.PassengerSaveReq;
+import com.kz.member.request.PassengerQueryReq;
+import com.kz.member.request.PassengerSaveReq;
 import com.kz.member.response.PassengerQueryResp;
 import com.kz.member.service.PassengerService;
 import jakarta.annotation.Resource;

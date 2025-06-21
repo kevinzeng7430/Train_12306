@@ -1,9 +1,9 @@
 package com.kz.member.controller;
 
 import com.kz.common.response.CommonResp;
-import com.kz.member.req.MemberLoginReq;
-import com.kz.member.req.MemberRegisterReq;
-import com.kz.member.req.MemberSendCodeReq;
+import com.kz.member.request.MemberLoginReq;
+import com.kz.member.request.MemberRegisterReq;
+import com.kz.member.request.MemberSendCodeReq;
 import com.kz.member.response.MemberLoginResp;
 import com.kz.member.service.MemberService;
 import jakarta.annotation.Resource;
