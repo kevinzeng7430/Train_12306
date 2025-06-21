@@ -4,7 +4,9 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.ObjectUtil;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.kz.common.context.LoginMemberContext;
+import com.kz.common.response.PageResp;
 import com.kz.common.util.SnowUtil;
 import com.kz.member.domain.Passenger;
 import com.kz.member.domain.PassengerExample;
@@ -51,7 +53,7 @@ public class PassengerServiceImp implements PassengerService {
      * @return
      */
     @Override
-    public List<PassengerQueryResp> queryList(PassengerQueryReq req) {
+    public PageResp<PassengerQueryResp> queryList(PassengerQueryReq req) {
         PassengerExample passengerExample = new PassengerExample();
         PassengerExample.Criteria criteria = passengerExample.createCriteria();
         if(ObjectUtil.isNotNull(req.getMemberId())){
@@ -59,6 +61,17 @@ public class PassengerServiceImp implements PassengerService {
         }
         PageHelper.startPage(req.getPageNum(),req.getPageSize()); // 分页查询，当前页2，每页2条数据
         List<Passenger> passengerList = passengerMapper.selectByExample(passengerExample);
-        return BeanUtil.copyToList(passengerList, PassengerQueryResp.class);
+
+        PageInfo<Passenger> pageInfo = new  PageInfo<>(passengerList);
+        //PageInfo 是 PageHelper 插件提供的分页信息封装类。
+        //它的作用是把查询结果 passengerList 包装起来，方便获取分页相关的数据，比如总记录数（getTotal）总页数（getPages）当前页码（getPageNum）每页条数（getPageSize）当前页数据列表（getList）
+        log.info("总行数:{}", pageInfo.getTotal());
+        log.info("总页数:{}", pageInfo.getPages());
+        List<PassengerQueryResp> list =BeanUtil.copyToList(passengerList,PassengerQueryResp.class);
+        PageResp<PassengerQueryResp> pageResp = new PageResp<>();
+        pageResp.setTotal(pageInfo.getTotal());
+        pageResp.setList(list);
+
+        return pageResp;
     }
 }
