@@ -1,7 +1,10 @@
 <template>
   <div>
     <h1>乘车人管理</h1>
-    <a-button type="primary" @click="showModal">新增</a-button>
+    <p>
+      <a-button type="primary" @click="showModal">新增</a-button>
+    </p>
+    <a-table :data-source = "passengers" :columns = "columns"/>
     <a-modal v-model:visible="visible" title="新增乘车人" @ok="handleOk"
           ok-text="确定" cancel-text="取消">
       <a-form :model="passenger" :label-col="{span: 4}" :wrapper-col="{span: 20}">
@@ -23,7 +26,7 @@
   </div>
 </template>
 <script >
-import {defineComponent, reactive, ref} from 'vue';
+import {defineComponent, reactive, ref, onMounted} from 'vue';
 import axios from "axios";
 import {notification} from "ant-design-vue";
 export default defineComponent({
@@ -38,9 +41,28 @@ export default defineComponent({
       createTime: undefined,
       updateTime: undefined,
     });
+    const passengers = ref([]);
+
     const showModal = () => {
       visible.value = true;
     };
+    const columns = [
+      {
+        title: '姓名',
+        dataIndex: 'name',
+        key: 'name',
+      },
+      {
+        title: '身份证号',
+        dataIndex: 'idCard',
+        key: 'idCard',
+      },
+      {
+        title: '类型',
+        dataIndex: 'type',
+        key: 'type',
+      },
+    ];
     const handleOk = e => {
       console.log(e);
       axios.post("member/passenger/save", passenger).then(response => {
@@ -67,11 +89,34 @@ export default defineComponent({
         console.error("请求失败", error);
       });
     };
+
+    const handleQuery = (param) =>{
+      axios.get("member/passenger/queryList",{
+        params:{
+          pageNum: param.page,
+          pageSize: param.size,
+        }
+      }).then((response)=>{
+        let data = response.data;
+        if(data.success){
+          passengers.value = data.content.list;
+        }else {
+          notification.error({message:"请求失败", description: data.message});
+          console.error(data.message);
+        }
+      });
+    };
+    //通过钩子函数（生命周期管理）等页面渲染完毕再执行查询
+    onMounted(()=>{
+      handleQuery({page: 1, size: 2});
+    });
     return {
       passenger,
       visible,
       showModal,
       handleOk,
+      passengers,
+      columns,
     };
   },
 });
