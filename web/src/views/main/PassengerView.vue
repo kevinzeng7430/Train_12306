@@ -2,9 +2,13 @@
   <div>
     <h1>乘车人管理</h1>
     <p>
-      <a-button type="primary" @click="showModal">新增</a-button>
+      <a-space>
+        <a-button type="primary" @click="handleQuery()">刷新</a-button>
+        <a-button type="primary" @click="showModal">新增</a-button>
+      </a-space>
     </p>
-    <a-table :data-source = "passengers" :columns = "columns" :pagination="pagination" @change="handleTableChange"/>
+    <a-table :data-source="passengers" :columns="columns" :pagination="pagination" @change="handleTableChange"
+              :loading="loading"/>
     <a-modal v-model:visible="visible" title="新增乘车人" @ok="handleOk"
           ok-text="确定" cancel-text="取消">
       <a-form :model="passenger" :label-col="{span: 4}" :wrapper-col="{span: 20}">
@@ -41,6 +45,7 @@ export default defineComponent({
       createTime: undefined,
       updateTime: undefined,
     });
+    let loading = ref(false);
     const passengers = ref([]);
 
     const showModal = () => {
@@ -71,6 +76,7 @@ export default defineComponent({
         if (data.success) {
           notification.success({message:"操作成功", description: "乘车人信息已保存"});
           visible.value = false;
+          handleQuery({page: pagination.current, size: pagination.pageSize}); // 刷新列表
           // visible.value = false; // 关闭模态框
           // passenger.id = undefined; // 清空乘车人信息
           // passenger.memberId = undefined;
@@ -91,12 +97,20 @@ export default defineComponent({
     };
 
     const handleQuery = (param) =>{
+      if(!param){
+        param = {
+          page: 1,
+          size: pagination.pageSize,
+        }
+      }
+      loading.value = true;
       axios.get("member/passenger/queryList",{
         params:{
           pageNum: param.page,
           pageSize: param.size,
         }
       }).then((response)=>{
+        loading.value = false;
         let data = response.data;
         if(data.success){
           passengers.value = data.content.list;
@@ -136,6 +150,8 @@ export default defineComponent({
       columns,
       pagination,
       handleTableChange,
+      handleQuery,
+      loading
     };
   },
 });
