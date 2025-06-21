@@ -1,8 +1,8 @@
 package com.kz.member.service;
 
-import com.kz.member.req.MemberLoginReq;
-import com.kz.member.req.MemberRegisterReq;
-import com.kz.member.req.MemberSendCodeReq;
+import com.kz.member.request.MemberLoginReq;
+import com.kz.member.request.MemberRegisterReq;
+import com.kz.member.request.MemberSendCodeReq;
 import com.kz.member.response.MemberLoginResp;
 
 public interface MemberService {

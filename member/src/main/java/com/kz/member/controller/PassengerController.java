@@ -1,13 +1,19 @@
 package com.kz.member.controller;
 
 
+import com.kz.common.context.LoginMemberContext;
 import com.kz.common.response.CommonResp;
-import com.kz.member.req.PassengerSaveReq;
+import com.kz.common.response.PageResp;
+import com.kz.member.request.PassengerQueryReq;
+import com.kz.member.request.PassengerSaveReq;
+import com.kz.member.response.PassengerQueryResp;
 import com.kz.member.service.PassengerService;
 import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/passenger")
 public class PassengerController {
@@ -15,12 +21,26 @@ public class PassengerController {
     @Resource
     private PassengerService passengerService;
 
+    /*
+        * 保存乘客信息
+     */
     @PostMapping("/save")
     public CommonResp<Object> save(@Validated @RequestBody PassengerSaveReq req) {
         passengerService.save(req);
         return new CommonResp<>();
+    }
 
+    @GetMapping("/queryList")
+    public CommonResp<PageResp<PassengerQueryResp>> queryList(@Validated PassengerQueryReq req) {
+        req.setMemberId(LoginMemberContext.getId());
+        PageResp<PassengerQueryResp> passengerList = passengerService.queryList(req);
+        return new CommonResp<>(passengerList);
+    }
 
+    @PostMapping("/delete/{id}")
+    public CommonResp<Object> delete(@PathVariable Long id) {
+        passengerService.delete(id);
+        return new CommonResp<>();
     }
 }
 
