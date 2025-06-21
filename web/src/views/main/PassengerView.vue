@@ -4,7 +4,7 @@
     <p>
       <a-button type="primary" @click="showModal">新增</a-button>
     </p>
-    <a-table :data-source = "passengers" :columns = "columns"/>
+    <a-table :data-source = "passengers" :columns = "columns" :pagination="pagination" @change="handleTableChange"/>
     <a-modal v-model:visible="visible" title="新增乘车人" @ok="handleOk"
           ok-text="确定" cancel-text="取消">
       <a-form :model="passenger" :label-col="{span: 4}" :wrapper-col="{span: 20}">
@@ -100,15 +100,32 @@ export default defineComponent({
         let data = response.data;
         if(data.success){
           passengers.value = data.content.list;
+          //让点击按钮也跟随
+          pagination.current = param.page;
+          pagination.total = data.content.total;
         }else {
           notification.error({message:"请求失败", description: data.message});
           console.error(data.message);
         }
       });
     };
+    //分页的三个属性是固定的
+    const pagination = reactive({
+      total: 0, // 总条数
+      current: 1, // 当前页码
+      pageSize: 2, // 每页条数
+    });
+
+    const handleTableChange = (pagination) => {
+      // 处理分页、过滤和排序
+      console.log(pagination);
+      handleQuery({page: pagination.current, size: pagination.pageSize});
+    };
+
+
     //通过钩子函数（生命周期管理）等页面渲染完毕再执行查询
     onMounted(()=>{
-      handleQuery({page: 1, size: 2});
+      handleQuery({page: 1, size: pagination.pageSize});
     });
     return {
       passenger,
@@ -117,6 +134,8 @@ export default defineComponent({
       handleOk,
       passengers,
       columns,
+      pagination,
+      handleTableChange,
     };
   },
 });
