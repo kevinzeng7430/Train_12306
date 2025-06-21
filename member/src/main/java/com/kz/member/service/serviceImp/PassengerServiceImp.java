@@ -3,6 +3,7 @@ package com.kz.member.service.serviceImp;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.ObjectUtil;
+import com.github.pagehelper.PageHelper;
 import com.kz.common.context.LoginMemberContext;
 import com.kz.common.util.SnowUtil;
 import com.kz.member.domain.Passenger;
@@ -56,6 +57,7 @@ public class PassengerServiceImp implements PassengerService {
         if(ObjectUtil.isNotNull(req.getMemberId())){
             criteria.andMemberIdEqualTo(req.getMemberId());
         }
+        PageHelper.startPage(1,2); // 分页查询，当前页2，每页2条数据
         List<Passenger> passengerList = passengerMapper.selectByExample(passengerExample);
         return BeanUtil.copyToList(passengerList, PassengerQueryResp.class);
     }

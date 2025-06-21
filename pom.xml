@@ -30,6 +30,7 @@
         <mybatis.version>3.0.0</mybatis.version>
         <mysql.version>8.0.22</mysql.version>
         <common.version>0.0.1-SNAPSHOT</common.version>
+        <pagerHelper.version>1.4.6</pagerHelper.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -79,6 +80,12 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
+            </dependency>
+            <!-- 分页插件 -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagerHelper.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
