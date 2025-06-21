@@ -35,12 +35,20 @@ public class PassengerServiceImp implements PassengerService {
     public void save(PassengerSaveReq req) {
         DateTime now = DateTime.now();
         Passenger passenger = BeanUtil.copyProperties(req, Passenger.class);
-        passenger.setId(SnowUtil.getSnowflakeNextId());
-        passenger.setMemberId(LoginMemberContext.getId());
-        passenger.setCreateTime(now);
-        passenger.setUpdateTime(now);
-        log.info("保存save passenger:{}", passenger);
-        passengerMapper.insert(passenger);
+        //用做编辑
+        if(ObjectUtil.isNull(passenger.getId())){
+            //如果乘客ID为空，说明是新增操作
+            passenger.setId(SnowUtil.getSnowflakeNextId());
+            passenger.setMemberId(LoginMemberContext.getId());
+            passenger.setCreateTime(now);
+            passenger.setUpdateTime(now);
+            log.info("保存save passenger:{}", passenger);
+            passengerMapper.insert(passenger);
+        }else{
+            passenger.setUpdateTime(now);
+            passengerMapper.updateByPrimaryKey(passenger);
+        }
+
     }
 
     /**

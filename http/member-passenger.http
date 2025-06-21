@@ -19,8 +19,9 @@ Content-Type: application/json
 token: {{token}}
 
 {
-
-  "name": "test",
+  "id": 1936352722223763456,
+  "memberId": 1931638920441892864,
+  "name": "testxiaoming",
   "idCard": "1234",
   "type": "1"
 }
