@@ -31,3 +31,10 @@ token: {{token}}
 GET http://localhost:8000/member/passenger/queryList?pageNum=1&pageSize=2
 Accept: application/json
 token: {{token}}
+
+
+
+###
+POST http://localhost:8000/member/passenger/delete/1936352722223763456
+Accept: application/json
+token: {{token}}

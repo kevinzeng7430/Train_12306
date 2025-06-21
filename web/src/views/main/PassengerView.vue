@@ -13,6 +13,12 @@
         <template v-if="column.dataIndex === 'operation'">
           <a-space>
             <a @click="onEdit(record)">编辑</a>
+            <a-popconfirm
+              title="删除后不可恢复,是否确认删除？"
+              @confirm="onDelete(record)"
+              ok-text="确认" cancel-text="取消">
+              <a style="color: red">删除</a>
+            </a-popconfirm>
           </a-space>
         </template>
       </template>
@@ -147,12 +153,28 @@ export default defineComponent({
     const handleTableChange = (pagination) => {
       // 处理分页、过滤和排序
       console.log(pagination);
-      handleQuery({page: pagination.value.current, size: pagination.value.pageSize});
+      handleQuery({page: pagination.current, size: pagination.pageSize});
     };
 
     const onEdit = (record) => {
       passenger.value = {...record}; // 复制记录到乘车人对象
       visible.value = true; // 打开模态框
+    };
+
+    const onDelete = (record) => {
+      console.log("删除记录", record);
+      axios.post("member/passenger/delete/"+ record.id).then(response => {
+        let data = response.data;
+        if (data.success) {
+          notification.success({message:"操作成功", description: "乘车人信息已删除"});
+          handleQuery({page: pagination.value.current, size: pagination.value.pageSize}); // 刷新列表
+        } else {
+          notification.error({message:"请求失败", description: data.message});
+          console.error(data.message);
+        }
+      }).catch(error => {
+        console.error("请求失败", error);
+      });
     };
 
     //通过钩子函数（生命周期管理）等页面渲染完毕再执行查询
@@ -170,7 +192,8 @@ export default defineComponent({
       handleTableChange,
       handleQuery,
       loading,
-      onEdit
+      onEdit,
+      onDelete
     };
   },
 });

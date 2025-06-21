@@ -10,6 +10,9 @@ import java.util.Date;
 @Data
 public class PassengerQueryResp {
     @JsonSerialize(using = ToStringSerializer.class)
+    private Long id;
+
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long memberId;
 
     private String name;
