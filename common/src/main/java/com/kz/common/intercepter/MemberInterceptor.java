@@ -16,6 +16,8 @@ import org.springframework.web.servlet.HandlerInterceptor;
 @Component
 @Slf4j
 public class MemberInterceptor implements HandlerInterceptor {
+
+    //
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //获取header的token参数

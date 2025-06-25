@@ -21,6 +21,13 @@
           </span>
         </router-link>
       </a-menu-item>
+      <a-menu-item>
+        <router-link to="/base/station">
+          <span>
+            <coffee-outlined/>&nbsp; 车站管理
+          </span>
+        </router-link>
+      </a-menu-item>
     </a-menu>
   </a-layout-sider>
 
