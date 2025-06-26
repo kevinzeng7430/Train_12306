@@ -3,37 +3,4 @@ Accept: application/json
 
 ###
 
-GET http://localhost:8000/member/hello
-Accept: application/json
-
-###
-GET http://localhost:8000/member/member/count
-Accept: application/json
-token:123456
-
-###
-POST http://localhost:8000/member/member/register
-Content-Type: application/x-www-form-urlencoded
-
-mobile= 122334
-
-###
-
-###
-POST http://localhost:8000/member/member/send-code
-Content-Type: application/json
-
-{
-  "mobile": "13399292922"
-}
-
-###
-
-###
-POST http://localhost:8000/member/member/login
-Content-Type: application/json
-
-{
-  "mobile": "13399292922",
-  "code": "8888"
-}
+POST http://localhost:8002/business/admin/train/query-all

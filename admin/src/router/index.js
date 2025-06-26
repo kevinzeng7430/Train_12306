@@ -34,6 +34,11 @@ const routes = [
             name:'station',
             component:()=> import('../views/main/base/StationView.vue'),
           },
+          {
+            path:'train',
+            name:'train',
+            component:()=> import('../views/main/base/TrainView.vue'),
+          },
         ]
       },
     ]

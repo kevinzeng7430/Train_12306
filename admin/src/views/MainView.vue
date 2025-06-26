@@ -27,7 +27,6 @@ export default defineComponent({
   components: {
     SideView,
     HeadView,
-
   },
   setup() {
 
