@@ -21,17 +21,38 @@
           </span>
         </router-link>
       </a-menu-item>
-      <a-menu-item>
+      <a-menu-item key="/base/station">
         <router-link to="/base/station">
           <span>
             <coffee-outlined/>&nbsp; 车站管理
           </span>
         </router-link>
       </a-menu-item>
-      <a-menu-item>
+      <a-menu-item key="/base/train">
         <router-link to="/base/train">
           <span>
             <coffee-outlined/>&nbsp; 列车管理
+          </span>
+        </router-link>
+      </a-menu-item>
+      <a-menu-item key="/base/train_station">
+        <router-link to="/base/train_station">
+          <span>
+            <coffee-outlined/>&nbsp; 列车车站管理
+          </span>
+        </router-link>
+      </a-menu-item>
+      <a-menu-item key="train_carriage">
+        <router-link to="train_carriage">
+          <span>
+            <coffee-outlined/>&nbsp; 列车车厢管理
+          </span>
+        </router-link>
+      </a-menu-item>
+      <a-menu-item key="/base/train_seat">
+        <router-link to="/base/train_seat">
+          <span>
+            <coffee-outlined/>&nbsp; 列车座位管理
           </span>
         </router-link>
       </a-menu-item>

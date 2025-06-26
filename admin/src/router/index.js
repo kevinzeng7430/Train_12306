@@ -39,7 +39,22 @@ const routes = [
             name:'train',
             component:()=> import('../views/main/base/TrainView.vue'),
           },
-        ]
+          {
+            path:"train_station",
+            name: "train_station",
+            component:()=> import('../views/main/base/TrainStationView.vue'),
+          },
+          {
+            path:"train_carriage",
+            name: "train_carriage",
+            component:()=> import('../views/main/base/TrainCarriageView.vue'),
+          },
+          {
+            path:"train_seat",
+            name: "train_seat",
+            component:()=> import('../views/main/base/TrainSeatView.vue'),
+          }
+        ],
       },
     ]
   },
