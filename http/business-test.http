@@ -7,3 +7,10 @@ POST http://localhost:8002/business/admin/train/query-all
 
 ###
 GET http://localhost:8002/business/admin/train-station/query-list?pageNum=1&pageSize=2
+
+
+###
+GET http://localhost:8002/business/admin/train-carriage/query-list?pageNum=1&pageSize=2
+
+###
+GET http://localhost:8002/business/admin/train-seat/query-list?pageNum=1&pageSize=2

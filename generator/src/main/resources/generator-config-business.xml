@@ -30,7 +30,7 @@
         <javaClientGenerator targetProject="../business/src/main/java"
                              targetPackage="com.kz.business.mapper"
                              type="XMLMAPPER"/>
-         <table tableName="train_carriage" domainObjectName="TrainCarriage"/>
+         <table tableName="train_seat" domainObjectName="TrainSeat"/>
 <!--        <table tableName="passenger" domainObjectName="Passenger"/>-->
     </context>
 </generatorConfiguration>
