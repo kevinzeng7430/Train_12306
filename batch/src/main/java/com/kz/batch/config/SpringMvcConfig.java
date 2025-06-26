@@ -1,4 +1,4 @@
-package com.kz.business.config;
+package com.kz.batch.config;
 
 import com.kz.common.intercepter.LogInterceptor;
 import jakarta.annotation.Resource;

@@ -1,4 +1,4 @@
-package com.kz.business;
+package com.kz.batch;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
