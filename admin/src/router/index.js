@@ -56,6 +56,15 @@ const routes = [
           }
         ],
       },
+      {
+        path: 'batch/',
+        children: [
+          {
+            path: 'job',
+            component: () => import('../views/main/batch/JobView.vue')
+          },
+        ]
+      }
     ]
   },
   {
