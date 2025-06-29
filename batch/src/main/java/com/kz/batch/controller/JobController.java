@@ -36,13 +36,13 @@ public class JobController {
 
 
     @RequestMapping(value = "/add")
-    public CommonResp add(@RequestBody CronJobReq cronJobReq) {
+    public CommonResp<Object> add(@RequestBody CronJobReq cronJobReq) {
         String jobClassName = cronJobReq.getName();
         String jobGroupName = cronJobReq.getGroup();
         String jobDescription = cronJobReq.getDescription();
         String cronExpression = cronJobReq.getCronExpression();
         log.info("创建定时任务开始：{}，{}，{}，{}", jobClassName, jobGroupName, cronExpression, jobDescription);
-        CommonResp commonResp = new CommonResp();
+        CommonResp<Object> commonResp = new CommonResp();
 
         try{
             // 通过SchedulerFactory获取一个调度器实例
