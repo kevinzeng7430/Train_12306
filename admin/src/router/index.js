@@ -64,7 +64,8 @@ const routes = [
             component: () => import('../views/main/batch/JobView.vue')
           },
         ]
-      }
+      },
+
     ]
   },
   {

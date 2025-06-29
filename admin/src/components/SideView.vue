@@ -2,6 +2,7 @@
   <a-layout-sider width="200" style="background: #fff">
     <a-menu
         v-model:selectedKeys = "selectedKeys"
+        :openKeys="['batch', 'base']"
         mode="inline"
         :style="{ height: '100%', borderRight: 0 }"
     >
@@ -21,41 +22,50 @@
           </span>
         </router-link>
       </a-menu-item>
-      <a-menu-item key="/base/station">
-        <router-link to="/base/station">
+      <a-sub-menu key="base">
+        <template #title>
+          <span class="menu-title">
+            <UnorderedListOutlined/>
+            基础数据
+          </span>
+        </template>
+        <a-menu-item key="/base/station">
+          <router-link to="/base/station">
           <span>
             <coffee-outlined/>&nbsp; 车站管理
           </span>
-        </router-link>
-      </a-menu-item>
-      <a-menu-item key="/base/train">
-        <router-link to="/base/train">
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="/base/train">
+          <router-link to="/base/train">
           <span>
             <coffee-outlined/>&nbsp; 列车管理
           </span>
-        </router-link>
-      </a-menu-item>
-      <a-menu-item key="/base/train_station">
-        <router-link to="/base/train_station">
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="/base/train_station">
+          <router-link to="/base/train_station">
           <span>
             <coffee-outlined/>&nbsp; 列车车站管理
           </span>
-        </router-link>
-      </a-menu-item>
-      <a-menu-item key="train_carriage">
-        <router-link to="train_carriage">
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="train_carriage">
+          <router-link to="train_carriage">
           <span>
             <coffee-outlined/>&nbsp; 列车车厢管理
           </span>
-        </router-link>
-      </a-menu-item>
-      <a-menu-item key="/base/train_seat">
-        <router-link to="/base/train_seat">
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="/base/train_seat">
+          <router-link to="/base/train_seat">
           <span>
             <coffee-outlined/>&nbsp; 列车座位管理
           </span>
-        </router-link>
-      </a-menu-item>
+          </router-link>
+        </a-menu-item>
+      </a-sub-menu>
+
 
       <a-sub-menu key="batch">
         <template #title>
