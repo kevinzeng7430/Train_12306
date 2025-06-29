@@ -2,7 +2,7 @@
   <a-layout-sider width="200" style="background: #fff">
     <a-menu
         v-model:selectedKeys = "selectedKeys"
-        :openKeys="['batch', 'base']"
+        :openKeys="['batch', 'base', 'business']"
         mode="inline"
         :style="{ height: '100%', borderRight: 0 }"
     >
@@ -22,6 +22,47 @@
           </span>
         </router-link>
       </a-menu-item>
+
+      <a-sub-menu key="business">
+        <template #title>
+          <span>
+            <UnorderedListOutlined />
+            业务管理
+          </span>
+        </template>
+<!--        <a-menu-item key="/business/confirm-order">-->
+<!--          <router-link to="/business/confirm-order">-->
+<!--            <user-outlined /> &nbsp; 订单信息-->
+<!--          </router-link>-->
+<!--        </a-menu-item>-->
+<!--        <a-menu-item key="/business/daily-train-ticket">-->
+<!--          <router-link to="/business/daily-train-ticket">-->
+<!--            <user-outlined /> &nbsp; 余票信息-->
+<!--          </router-link>-->
+<!--        </a-menu-item>-->
+        <a-menu-item key="/business/daily-train">
+          <router-link to="/business/daily-train">
+            <user-outlined /> &nbsp; 每日车次
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="/business/daily-train-station">
+          <router-link to="/business/daily-train-station">
+            <user-outlined /> &nbsp; 每日车站
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="/business/daily-train-carriage">
+          <router-link to="/business/daily-train-carriage">
+            <user-outlined /> &nbsp; 每日车厢
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="/business/daily-train-seat">
+          <router-link to="/business/daily-train-seat">
+            <user-outlined /> &nbsp; 每日座位
+          </router-link>
+        </a-menu-item>
+      </a-sub-menu>
+
+
       <a-sub-menu key="base">
         <template #title>
           <span class="menu-title">

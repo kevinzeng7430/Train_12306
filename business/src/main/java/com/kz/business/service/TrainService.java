@@ -19,4 +19,6 @@ public interface TrainService {
     void delete(Long id);
 
     List<TrainQueryResp> queryAll();
+
+    List<Train> selectAll();
 }

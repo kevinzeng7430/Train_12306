@@ -42,7 +42,7 @@ public class JobController {
         String jobDescription = cronJobReq.getDescription();
         String cronExpression = cronJobReq.getCronExpression();
         log.info("创建定时任务开始：{}，{}，{}，{}", jobClassName, jobGroupName, cronExpression, jobDescription);
-        CommonResp<Object> commonResp = new CommonResp();
+        CommonResp<Object> commonResp = new CommonResp<>();
 
         try{
             // 通过SchedulerFactory获取一个调度器实例
